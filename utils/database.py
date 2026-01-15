@@ -1,6 +1,9 @@
 import sqlite3
 
-DB_PATH = "clinical_risk.db"
+import os
+
+DB_PATH = os.getenv("DB_PATH", "db/clinical_risk.db")
+
 
 def get_connection():
     return sqlite3.connect(DB_PATH)

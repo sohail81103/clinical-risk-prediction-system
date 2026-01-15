@@ -1,11 +1,18 @@
+from utils.init_db import init_db
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import List
 from model.predict import predict_cancer_risk
 
 app = FastAPI(title="Clinical Risk Prediction API")
 
+@app.on_event("startup")
+def startup_event():
+    init_db()
+
+
 class PatientData(BaseModel):
-    features: list
+    features: List[float]
 
 @app.post("/predict")
 def predict(data: PatientData):
