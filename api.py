@@ -1,6 +1,8 @@
+import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+
 from utils.init_db import init_db
 from model.predict import predict_cancer_risk
 
@@ -10,8 +12,8 @@ class PatientData(BaseModel):
     features: List[float]
 
 @app.on_event("startup")
-def startup_event():
-    init_db()
+def startup():
+    init_db()   # ensure DB + table always exists
 
 @app.post("/predict")
 def predict(data: PatientData):
@@ -19,8 +21,4 @@ def predict(data: PatientData):
 
 @app.get("/")
 def home():
-    return {"message": "API running"}
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+    return {"status": "API running"}
