@@ -2,7 +2,10 @@ import sqlite3
 
 import os
 
-DB_PATH = os.getenv("DB_PATH", "db/clinical_risk.db")
+DB_DIR = "db"
+os.makedirs(DB_DIR, exist_ok=True)
+
+DB_PATH = os.path.join(DB_DIR, "clinical_risk.db")
 
 
 def get_connection():
