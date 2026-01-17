@@ -13,8 +13,8 @@ class PatientData(BaseModel):
 
 @app.on_event("startup")
 def startup():
-    os.makedirs("db", exist_ok=True)
     init_db()
+
 
 @app.post("/predict")
 def predict(data: PatientData):

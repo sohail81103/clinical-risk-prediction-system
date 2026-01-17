@@ -1,8 +1,23 @@
-import sqlite3
 import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-BASE_DIR = os.getenv("RAILWAY_VOLUME_MOUNT_PATH", "/tmp")
-DB_PATH = os.path.join(BASE_DIR, "clinical_risk.db")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-def get_connection():
-    return sqlite3.connect(DB_PATH, check_same_thread=False)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
