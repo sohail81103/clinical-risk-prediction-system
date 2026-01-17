@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, Float, String, DateTime
-from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import func
-
+from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 class PatientPrediction(Base):
