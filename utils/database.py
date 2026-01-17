@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-DB_PATH = "db/clinical_risk.db"
+DB_PATH = os.path.join("db", "clinical_risk.db")
 
 def get_connection():
     os.makedirs("db", exist_ok=True)
