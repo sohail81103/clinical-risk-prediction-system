@@ -1,4 +1,3 @@
-import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
@@ -15,11 +14,10 @@ class PatientData(BaseModel):
 def startup():
     init_db()
 
+@app.get("/")
+def health():
+    return {"status": "API running"}
 
 @app.post("/predict")
 def predict(data: PatientData):
     return predict_cancer_risk(data.features)
-
-@app.get("/")
-def home():
-    return {"status": "API running"}
