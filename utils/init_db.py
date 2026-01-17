@@ -7,7 +7,6 @@ def init_db():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS patient_predictions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-
         radius_mean REAL,
         texture_mean REAL,
         perimeter_mean REAL,
@@ -18,7 +17,6 @@ def init_db():
         concave_points_mean REAL,
         symmetry_mean REAL,
         fractal_dimension_mean REAL,
-
         radius_se REAL,
         texture_se REAL,
         perimeter_se REAL,
@@ -28,10 +26,8 @@ def init_db():
         concavity_se REAL,
         concave_points_se REAL,
         symmetry_se REAL,
-
         diagnosis TEXT,
         confidence REAL,
-
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     """)
