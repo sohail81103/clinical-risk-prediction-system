@@ -23,7 +23,7 @@ def save_prediction(db: Session, features, diagnosis, confidence):
         concave_points_se=features[17],
         symmetry_se=features[18],
         diagnosis=diagnosis,
-        confidence=confidence
+        confidence=confidence,
     )
 
     db.add(record)
