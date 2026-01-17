@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, Float, String, DateTime
 from sqlalchemy.sql import func
-from sqlalchemy.orm import declarative_base
-Base = declarative_base()
+from utils.database import Base
 
 class PatientPrediction(Base):
     __tablename__ = "patient_predictions"
@@ -31,5 +30,4 @@ class PatientPrediction(Base):
 
     diagnosis = Column(String)
     confidence = Column(Float)
-
     created_at = Column(DateTime(timezone=True), server_default=func.now())
