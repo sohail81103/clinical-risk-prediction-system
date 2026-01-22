@@ -63,9 +63,10 @@ Prediction + Confidence
 Database Persistence
         ↓
 JSON Response
+---
+
 📂 Backend Architecture
-text
-Copy code
+
 clinical-risk-system/
 ├── api.py                # FastAPI entry point
 ├── model/
