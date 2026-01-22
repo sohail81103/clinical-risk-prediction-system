@@ -1,171 +1,197 @@
-🩺 Clinical Risk Prediction System (Breast Cancer Classification)
+🩺 Clinical Risk Prediction System (ML + Backend)
 
-A full backend ML project that predicts breast cancer risk using a trained Random Forest model.
-Includes data preprocessing, ML model training, database storage (SQLite), and a FastAPI REST API for live predictions.
+A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) based on patient clinical features.
+The system exposes a REST API, persists predictions in a database, and is containerized and deployed to the cloud.
 
-💡 This project is built for interview portfolio use — suitable for backend, ML, and full-stack roles.
+🚀 Live API
 
-🚀 Project Features
+Base URL: https://<your-railway-app-url>
 
-✔️ ML Model (Random Forest Classifier)
+Swagger Docs: https://<your-railway-app-url>/docs
 
-✔️ Local inference API with FastAPI
+The Swagger UI allows live testing of the prediction endpoint directly from the browser.
 
-✔️ SQLite database storing prediction history
+📌 Project Overview
 
-✔️ Input validation before inference
+This project demonstrates how a trained machine learning model can be transformed into a scalable backend service.
 
-✔️ Model & scaler saved (.pkl) for reuse
+Key highlights:
 
-✔️ Auto-documentation via Swagger UI (/docs)
+Trained ML model is loaded once (no retraining per request)
 
-🧠 Tech Stack Overview
-Layer	Technology
-ML Model	Scikit-learn, RandomForestClassifier
-API Backend	FastAPI + Uvicorn
-Storage	SQLite (local DB)
-Model Persistence	Joblib (.pkl files)
-Environment	Python 3.11 (venv)
-📂 Folder Structure
-clinical-risk-prediction-system/
-│
-├── data/
-│   └── breast_cancer.csv                # raw dataset
-│
+Input validation using schema-based validation
+
+REST API for inference
+
+Persistent storage of predictions
+
+Containerized deployment
+
+Cloud-hosted and publicly accessible
+
+🧠 Machine Learning Pipeline
+
+Algorithm: Random Forest Classifier
+
+Preprocessing: StandardScaler
+
+Dataset: Breast Cancer Wisconsin Dataset
+
+Model Persistence: joblib
+
+The model and scaler are saved after training and reused during inference to ensure:
+
+Low latency
+
+Consistent predictions
+
+Production-grade behavior
+
+🔄 End-to-End Workflow
+Client (JSON Request)
+        ↓
+FastAPI Endpoint
+        ↓
+Pydantic Validation
+        ↓
+Feature Preprocessing
+        ↓
+ML Model Inference
+        ↓
+Prediction + Confidence
+        ↓
+Database Persistence
+        ↓
+JSON Response
+
+🏗️ Backend Architecture
+clinical-risk-system/
+├── api.py                # FastAPI entry point
 ├── model/
-│   ├── train_model.py                   # training script
-│   ├── predict.py                       # ML inference
-│   ├── rf_model.pkl                     # trained model
-│   └── scaler.pkl                       # standard scaler
-│
+│   ├── train_model.py    # Model training (offline)
+│   ├── predict.py        # Inference logic
+│   └── rf_model.pkl      # Saved ML model
+│   └── scaler.pkl        # Saved scaler
 ├── utils/
-│   ├── preprocessing.py                 # feature selection & mapping
-│   ├── validators.py                    # input checks
-│   ├── database.py                      # DB connection setup
-│   ├── predictions_repo.py              # CRUD functions
-│   └── init_db.py                       # create DB schema
-│
-├── api.py                               # FastAPI application
-├── main.py                              # local run script
-├── clinical_risk.db                     # generated SQLite DB
-├── requirements.txt                     # dependencies
-└── README.md                            # documentation
+│   ├── preprocessing.py # Feature definitions
+│   ├── validators.py    # Input validation
+│   ├── database.py      # DB connection
+│   ├── init_db.py       # Schema initialization
+│   └── predictions_repo.py # DB persistence logic
+├── db/                   # Local DB volume
+├── Dockerfile
+├── requirements.txt
+└── README.md
 
-⚙️ Setup & Installation
-1️⃣ Clone the Repository
-git clone https://github.com/sohail81103/clinical-risk-prediction-system.git
-cd clinical-risk-prediction-system
+🗄️ Database Design
 
-2️⃣ Create and Activate Virtual Environment
-python3 -m venv venv
-source venv/bin/activate       # mac / linux
-venv\Scripts\activate          # windows
+Local development: SQLite
 
-3️⃣ Install Dependencies
-pip install -r requirements.txt
+Cloud deployment: PostgreSQL
 
-4️⃣ Initialize SQLite Database
-python utils/init_db.py
+Stored fields:
 
-5️⃣ Start the FastAPI Server
-uvicorn api:app --reload
+Input features
 
-🌐 Access API
-Purpose	URL
-API homepage	http://127.0.0.1:8000
+Prediction result
 
-API documentation (Swagger UI)	http://127.0.0.1:8000/docs
+Confidence score
 
-JSON schema docs	http://127.0.0.1:8000/openapi.json
-🧪 Example API Request (POST /predict)
+Timestamp
 
-📍 Endpoint:
+This enables:
 
-POST http://127.0.0.1:8000/predict
+Prediction auditing
 
+Future analytics
 
-📨 Request Body:
+Monitoring model behavior
 
+🔌 API Endpoints
+1️⃣ Health Check
+
+GET /
+
+{
+  "status": "API running"
+}
+
+2️⃣ Cancer Risk Prediction
+
+POST /predict
+
+Request
 {
   "features": [
     17.99, 10.38, 122.8, 1001.0, 0.1184,
-    0.2776, 0.3001, 0.1471, 0.2419, 0.07871,
-    1.095, 0.9053, 8.589, 153.4, 0.006399,
-    0.04904, 0.05373, 0.01587, 0.03003
+    0.2776, 0.3001, 0.1471, 0.2419,
+    0.07871, 1.095, 0.9053, 8.589,
+    153.4, 0.006399, 0.04904,
+    0.05373, 0.01587, 0.03003
   ]
 }
 
-
-📤 Response:
-
+Response
 {
   "status": "success",
   "diagnosis": "Malignant",
   "confidence": 86.85
 }
 
-🗃️ Database Usage (SQLite)
-View Saved Predictions
-python utils/view_data.py
+🐳 Docker & Deployment
 
+Fully containerized using Docker
 
-Sample DB row:
+Environment-based port handling
 
-(id, diagnosis, confidence, created_at)
-(1, 'Malignant', 86.85, '2025-12-25 03:27:46')
+Compatible with cloud platforms
 
-📌 Architectural Flow
-Patient Input (19 features)
-        ↓
- Input Validation (validators.py)
-        ↓
- Data Preprocessing & Scaling
-        ↓
- ML Model Inference (predict.py)
-        ↓
- Prediction Output + Confidence
-        ↓
- Stored in Database (predictions_repo.py)
-        ↓
- Accessible through REST API (api.py)
+Deployed using Railway
 
-🚀 Deployment Options (Next Steps)
-Platform	Use-Case	Difficulty
-Railway.app	Host API online for free	⭐ Easy
-Render.com	Auto deploy backend	⭐⭐ Medium
-Docker	Containerized deployment	⭐⭐⭐ Professional
-HuggingFace Space	ML + UI showcase	⭐⭐ Medium
-📌 Future Enhancements
+Docker Run (Local)
+docker build -t clinical-risk-api .
+docker run -p 8000:8000 clinical-risk-api
 
-🔐 Add JWT / API key authentication
+🛠️ Tech Stack
 
-📊 Streamlit UI dashboard for doctors
+ML: Scikit-learn
 
-☁️ Migrate DB to PostgreSQL cloud
+Backend: FastAPI
 
-🐳 Dockerize for production deployment
+Validation: Pydantic
 
-📱 Mobile app integration via API
+Database: SQLite → PostgreSQL
+
+Deployment: Docker + Railway
+
+Language: Python 3.11
+
+🎯 Why This Project Matters
+
+This project demonstrates:
+
+ML → Backend integration
+
+API-first design
+
+Database-backed inference
+
+Production deployment mindset
+
+Software engineering best practices
+
+It goes beyond notebooks and shows how ML models are actually used in real systems.
 
 👨‍💻 Author
 
 Mohammed Sohail
-Final Year ECE | ML • Backend • APIs
-📌 GitHub: https://github.com/sohail81103
+Final-year B.Tech (ECE)
+Interests: Machine Learning, Backend Systems, Distributed Applications
 
-🎉 Summary
+📌 Notes
 
-This project proves skills in:
-✔ ML model training & inference
-✔ Backend development with FastAPI
-✔ Database persistence & CRUD
-✔ API deployment readiness
+Authentication and rate limiting can be added for production use
 
-A very strong project for internships / placements.
+Model retraining pipelines can be integrated in future
 
-📍 Next Step for You
-
-If you want, I can now help with:
-Deploying this online (free URL)
-just say:
-➡️ Deploy Now
+Designed for extensibility and scalability
