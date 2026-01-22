@@ -63,6 +63,7 @@ Prediction + Confidence
 Database Persistence
         ↓
 JSON Response
+```text
 ---
 
 📂 Backend Architecture
