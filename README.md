@@ -5,9 +5,9 @@ The system exposes a REST API, persists predictions in a database, and is contai
 
 🚀 Live API
 
-Base URL: https://<your-railway-app-url>
+Base URL: https://clinical-risk-prediction-system-production-7ada.up.railway.app
 
-Swagger Docs: https://<your-railway-app-url>/docs
+Swagger Docs: https://clinical-risk-prediction-system-production-7ada.up.railway.app/docs
 
 The Swagger UI allows live testing of the prediction endpoint directly from the browser.
 
