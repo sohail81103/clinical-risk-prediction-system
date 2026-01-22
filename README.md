@@ -48,8 +48,9 @@ Low latency
 No repeated training
 
 Consistent predictions
+## 🔄 End-to-End Workflow
 
-🔄 End-to-End Workflow
+```text
 Client (JSON Request)
         ↓
 FastAPI Endpoint
@@ -65,6 +66,7 @@ Prediction + Confidence
 Database Persistence
         ↓
 JSON Response
+
 
 ## 📂 Backend Architecture
 
