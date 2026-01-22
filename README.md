@@ -1,13 +1,15 @@
 🩺 Clinical Risk Prediction System (ML + Backend)
 
-A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) based on patient clinical features.
-The system exposes a REST API, persists predictions in a database, and is containerized and deployed to the cloud.
+A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) using patient clinical features.
+The system exposes a REST API, stores predictions in a database, and is containerized and deployed to the cloud.
 
 🚀 Live API
 
-Base URL: https://clinical-risk-prediction-system-production-7ada.up.railway.app
+Base URL:
+https://clinical-risk-prediction-system-production-7ada.up.railway.app/
 
-Swagger Docs: https://clinical-risk-prediction-system-production-7ada.up.railway.app/docs
+Swagger API Docs:
+https://clinical-risk-prediction-system-production-7ada.up.railway.app/docs
 
 The Swagger UI allows live testing of the prediction endpoint directly from the browser.
 
@@ -17,17 +19,17 @@ This project demonstrates how a trained machine learning model can be transforme
 
 Key highlights:
 
-Trained ML model is loaded once (no retraining per request)
+ML model is trained once and reused for inference
 
-Input validation using schema-based validation
+Schema-based input validation
 
-REST API for inference
+REST API for prediction
 
 Persistent storage of predictions
 
-Containerized deployment
+Dockerized and cloud deployed
 
-Cloud-hosted and publicly accessible
+Accessible from web and mobile
 
 🧠 Machine Learning Pipeline
 
@@ -39,13 +41,13 @@ Dataset: Breast Cancer Wisconsin Dataset
 
 Model Persistence: joblib
 
-The model and scaler are saved after training and reused during inference to ensure:
+The trained model and scaler are serialized and loaded during runtime to ensure:
 
 Low latency
 
-Consistent predictions
+No repeated training
 
-Production-grade behavior
+Consistent predictions
 
 🔄 End-to-End Workflow
 Client (JSON Request)
@@ -68,17 +70,17 @@ JSON Response
 clinical-risk-system/
 ├── api.py                # FastAPI entry point
 ├── model/
-│   ├── train_model.py    # Model training (offline)
+│   ├── train_model.py    # Offline model training
 │   ├── predict.py        # Inference logic
-│   └── rf_model.pkl      # Saved ML model
+│   ├── rf_model.pkl      # Saved ML model
 │   └── scaler.pkl        # Saved scaler
 ├── utils/
 │   ├── preprocessing.py # Feature definitions
 │   ├── validators.py    # Input validation
-│   ├── database.py      # DB connection
-│   ├── init_db.py       # Schema initialization
-│   └── predictions_repo.py # DB persistence logic
-├── db/                   # Local DB volume
+│   ├── database.py      # DB connection logic
+│   ├── init_db.py       # DB schema initialization
+│   └── predictions_repo.py # Persistence layer
+├── db/                   # Local database volume
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
@@ -89,23 +91,17 @@ Local development: SQLite
 
 Cloud deployment: PostgreSQL
 
-Stored fields:
+Stored information:
 
-Input features
+Patient feature values
 
-Prediction result
+Prediction result (Benign / Malignant)
 
 Confidence score
 
 Timestamp
 
-This enables:
-
-Prediction auditing
-
-Future analytics
-
-Monitoring model behavior
+This enables auditing, tracking, and future analytics.
 
 🔌 API Endpoints
 1️⃣ Health Check
@@ -144,19 +140,19 @@ Fully containerized using Docker
 
 Environment-based port handling
 
-Compatible with cloud platforms
+Deployed on Railway Cloud Platform
 
-Deployed using Railway
+Publicly accessible API
 
-Docker Run (Local)
+Run Locally
 docker build -t clinical-risk-api .
 docker run -p 8000:8000 clinical-risk-api
 
 🛠️ Tech Stack
 
-ML: Scikit-learn
+Machine Learning: Scikit-learn
 
-Backend: FastAPI
+Backend API: FastAPI
 
 Validation: Pydantic
 
@@ -170,28 +166,28 @@ Language: Python 3.11
 
 This project demonstrates:
 
-ML → Backend integration
+ML → Backend system integration
 
-API-first design
+API-first backend design
 
 Database-backed inference
 
-Production deployment mindset
+Cloud deployment experience
 
 Software engineering best practices
 
-It goes beyond notebooks and shows how ML models are actually used in real systems.
+It goes beyond notebooks and shows how ML models are used in real-world systems.
 
 👨‍💻 Author
 
 Mohammed Sohail
 Final-year B.Tech (ECE)
-Interests: Machine Learning, Backend Systems, Distributed Applications
+Interests: Machine Learning, Backend Systems, Software Engineering
 
 📌 Notes
 
 Authentication and rate limiting can be added for production use
 
-Model retraining pipelines can be integrated in future
+Model retraining pipelines can be integrated in the future
 
-Designed for extensibility and scalability
+Designed to be extensible and scalable
