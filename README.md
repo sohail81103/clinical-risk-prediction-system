@@ -66,8 +66,9 @@ JSON Response
 ```
 ---
 
-📂 Backend Architecture
+## 📂 Backend Architecture
 
+```text
 clinical-risk-system/
 ├── api.py                # FastAPI entry point
 ├── model/
@@ -85,6 +86,9 @@ clinical-risk-system/
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
+```
+---
+```text
 🗄️ Database Design
 Local development: SQLite
 
@@ -101,8 +105,11 @@ Confidence score
 Timestamp
 
 This enables auditing, tracking, and future analytics.
-
+```
+---
+```text
 🔌 API Endpoints
+
 1️⃣ Health Check
 GET /
 
@@ -136,6 +143,9 @@ Copy code
   "diagnosis": "Malignant",
   "confidence": 86.85
 }
+```
+---
+```text
 🐳 Docker & Deployment
 Fully containerized using Docker
 
@@ -163,7 +173,9 @@ Database: SQLite → PostgreSQL
 Deployment: Docker + Railway
 
 Language: Python 3.11
-
+```
+---
+```text
 🎯 Why This Project Matters
 This project demonstrates:
 
@@ -178,6 +190,7 @@ Cloud deployment experience
 Software engineering best practices
 
 It goes beyond notebooks and shows how ML models are used in real-world systems.
-
+```
+----
 👨‍💻 Author
 Mohammed Sohail
