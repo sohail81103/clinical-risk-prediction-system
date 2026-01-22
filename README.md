@@ -88,8 +88,9 @@ clinical-risk-system/
 └── README.md
 ```
 ---
+
+## 🗄️ Database Design
 ```text
-🗄️ Database Design
 Local development: SQLite
 
 Cloud deployment: PostgreSQL
@@ -107,8 +108,9 @@ Timestamp
 This enables auditing, tracking, and future analytics.
 ```
 ---
+
+## 🔌 API Endpoints
 ```text
-🔌 API Endpoints
 
 1️⃣ Health Check
 GET /
@@ -145,8 +147,9 @@ Copy code
 }
 ```
 ---
+
+## 🐳 Docker & Deployment
 ```text
-🐳 Docker & Deployment
 Fully containerized using Docker
 
 Environment-based port handling
@@ -175,8 +178,9 @@ Deployment: Docker + Railway
 Language: Python 3.11
 ```
 ---
+
+## 🎯 Why This Project Matters
 ```text
-🎯 Why This Project Matters
 This project demonstrates:
 
 ML → Backend system integration
