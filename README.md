@@ -184,13 +184,3 @@ It goes beyond notebooks and shows how ML models are used in real-world systems.
 👨‍💻 Author
 
 Mohammed Sohail
-Final-year B.Tech (ECE)
-Interests: Machine Learning, Backend Systems, Software Engineering
-
-📌 Notes
-
-Authentication and rate limiting can be added for production use
-
-Model retraining pipelines can be integrated in the future
-
-Designed to be extensible and scalable
