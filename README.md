@@ -1,53 +1,50 @@
-🩺 Clinical Risk Prediction System (ML + Backend)
+## 🩺 Clinical Risk Prediction System (ML + Backend)
 
-A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) using patient clinical features.
+A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) using patient clinical features.  
 The system exposes a REST API, stores predictions in a database, and is containerized and deployed to the cloud.
 
-🚀 Live API
+---
 
-Base URL:
+## 🚀 Live API
+
+**Base URL**  
 https://clinical-risk-prediction-system-production-7ada.up.railway.app/
 
-Swagger API Docs:
-https://clinical-risk-prediction-system-production-7ada.up.railway.app/docs
+**Swagger API Docs**  
+https://clinical-risk-prediction-system-production-7ada.up.railway.app/docs  
 
 The Swagger UI allows live testing of the prediction endpoint directly from the browser.
 
-📌 Project Overview
+---
+
+## 📌 Project Overview
 
 This project demonstrates how a trained machine learning model can be transformed into a scalable backend service.
 
-Key highlights:
+**Key highlights:**
+- ML model is trained once and reused for inference
+- Schema-based input validation
+- REST API for prediction
+- Persistent storage of predictions
+- Dockerized and cloud deployed
+- Accessible from web and mobile
 
-ML model is trained once and reused for inference
+---
 
-Schema-based input validation
+## 🧠 Machine Learning Pipeline
 
-REST API for prediction
-
-Persistent storage of predictions
-
-Dockerized and cloud deployed
-
-Accessible from web and mobile
-
-🧠 Machine Learning Pipeline
-
-Algorithm: Random Forest Classifier
-
-Preprocessing: StandardScaler
-
-Dataset: Breast Cancer Wisconsin Dataset
-
-Model Persistence: joblib
+- **Algorithm:** Random Forest Classifier  
+- **Preprocessing:** StandardScaler  
+- **Dataset:** Breast Cancer Wisconsin Dataset  
+- **Model Persistence:** joblib  
 
 The trained model and scaler are serialized and loaded during runtime to ensure:
+- Low latency
+- No repeated training
+- Consistent predictions
 
-Low latency
+---
 
-No repeated training
-
-Consistent predictions
 ## 🔄 End-to-End Workflow
 
 ```text
@@ -68,9 +65,6 @@ Database Persistence
 JSON Response
 
 
-## 📂 Backend Architecture
-
-```text
 clinical-risk-system/
 ├── api.py                # FastAPI entry point
 ├── model/
@@ -79,110 +73,12 @@ clinical-risk-system/
 │   ├── rf_model.pkl      # Saved ML model
 │   └── scaler.pkl        # Saved scaler
 ├── utils/
-│   ├── preprocessing.py # Feature definitions
-│   ├── validators.py    # Input validation
-│   ├── database.py      # DB connection logic
-│   ├── init_db.py       # DB schema initialization
+│   ├── preprocessing.py  # Feature definitions
+│   ├── validators.py     # Input validation
+│   ├── database.py       # DB connection logic
+│   ├── init_db.py        # DB schema initialization
 │   └── predictions_repo.py # Persistence layer
 ├── db/                   # Local database volume
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
-
-
-🗄️ Database Design
-
-Local development: SQLite
-
-Cloud deployment: PostgreSQL
-
-Stored information:
-
-Patient feature values
-
-Prediction result (Benign / Malignant)
-
-Confidence score
-
-Timestamp
-
-This enables auditing, tracking, and future analytics.
-
-🔌 API Endpoints
-1️⃣ Health Check
-
-GET /
-
-{
-  "status": "API running"
-}
-
-2️⃣ Cancer Risk Prediction
-
-POST /predict
-
-Request
-{
-  "features": [
-    17.99, 10.38, 122.8, 1001.0, 0.1184,
-    0.2776, 0.3001, 0.1471, 0.2419,
-    0.07871, 1.095, 0.9053, 8.589,
-    153.4, 0.006399, 0.04904,
-    0.05373, 0.01587, 0.03003
-  ]
-}
-
-Response
-{
-  "status": "success",
-  "diagnosis": "Malignant",
-  "confidence": 86.85
-}
-
-🐳 Docker & Deployment
-
-Fully containerized using Docker
-
-Environment-based port handling
-
-Deployed on Railway Cloud Platform
-
-Publicly accessible API
-
-Run Locally
-docker build -t clinical-risk-api .
-docker run -p 8000:8000 clinical-risk-api
-
-🛠️ Tech Stack
-
-Machine Learning: Scikit-learn
-
-Backend API: FastAPI
-
-Validation: Pydantic
-
-Database: SQLite → PostgreSQL
-
-Deployment: Docker + Railway
-
-Language: Python 3.11
-
-🎯 Why This Project Matters
-
-This project demonstrates:
-
-ML → Backend system integration
-
-API-first backend design
-
-Database-backed inference
-
-Cloud deployment experience
-
-Software engineering best practices
-
-It goes beyond notebooks and shows how ML models are used in real-world systems.
-
-👨‍💻 Author
-
-Mohammed Sohail
