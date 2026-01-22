@@ -66,7 +66,9 @@ Database Persistence
         ↓
 JSON Response
 
-🏗️ Backend Architecture
+## 📂 Backend Architecture
+
+```text
 clinical-risk-system/
 ├── api.py                # FastAPI entry point
 ├── model/
@@ -84,6 +86,7 @@ clinical-risk-system/
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
+
 
 🗄️ Database Design
 
