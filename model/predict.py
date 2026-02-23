@@ -4,13 +4,11 @@ import pandas as pd
 from utils.preprocessing import FEATURE_COLUMNS
 from utils.validators import validate_features
 from utils.predictions_repo import save_prediction
-from utils.database import SessionLocal
 
 model = joblib.load("model/rf_model.pkl")
 scaler = joblib.load("model/scaler.pkl")
 
 def predict_cancer_risk(features, persist=True):
-    db = None
     try:
         validate_features(features)
 
@@ -24,8 +22,7 @@ def predict_cancer_risk(features, persist=True):
         confidence_pct = round(float(confidence) * 100, 2)
 
         if persist:
-            db = SessionLocal()
-            save_prediction(db, features, diagnosis, confidence_pct)
+            save_prediction(features, diagnosis, confidence_pct)
 
         return {
             "status": "success",
@@ -35,7 +32,3 @@ def predict_cancer_risk(features, persist=True):
 
     except Exception as e:
         return {"status": "error", "message": str(e)}
-
-    finally:
-        if db:
-            db.close()

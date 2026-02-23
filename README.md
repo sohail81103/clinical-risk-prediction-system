@@ -1,6 +1,7 @@
 ## 🩺 Clinical Risk Prediction System (ML + Backend)
 
-A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) using patient clinical features.  
+A production-ready machine learning–powered backend system that predicts breast cancer risk (Benign / Malignant) using patient clinical features.
+
 The system exposes a REST API, stores predictions in a database, and is containerized and deployed to the cloud.
 
 ---
@@ -8,10 +9,10 @@ The system exposes a REST API, stores predictions in a database, and is containe
 ## 🚀 Live API
 
 **Base URL**  
-https://clinical-risk-prediction-system-production-7ada.up.railway.app/
+https://clinical-risk-prediction-system.onrender.com
 
 **Swagger API Docs**  
-https://clinical-risk-prediction-system-production-7ada.up.railway.app/docs  
+https://clinical-risk-prediction-system.onrender.com/docs
 
 The Swagger UI allows live testing of the prediction endpoint directly from the browser.
 
@@ -22,12 +23,17 @@ The Swagger UI allows live testing of the prediction endpoint directly from the 
 This project demonstrates how a trained machine learning model can be transformed into a scalable backend service.
 
 **Key highlights:**
-- ML model is trained once and reused for inference
+- ML model trained offline and reused for inference
+
 - Schema-based input validation using Pydantic
+
 - REST API for prediction
+
 - Persistent storage of predictions
-- Dockerized and cloud deployed
-- Accessible from web and mobile
+
+- Dockerized application
+
+- Cloud deployment using Render
 
 ---
 
@@ -92,8 +98,7 @@ clinical-risk-system/
 ## 🗄️ Database Design
 ```text
 Local development: SQLite
-
-Cloud deployment: PostgreSQL
+Cloud deployment (Render): SQLite (file-based)
 
 Stored information:
 
@@ -107,6 +112,10 @@ Timestamp
 
 This enables auditing, tracking, and future analytics.
 ```
+
+Render note:
+- Set `SQLITE_DB_PATH` to your persistent disk path (example: `/var/data/clinical_risk.db`)
+
 ---
 
 ## 🔌 API Endpoints
@@ -154,7 +163,7 @@ Fully containerized using Docker
 
 Environment-based port handling
 
-Deployed on Railway Cloud Platform
+Deployed on Render Cloud Platform
 
 Publicly accessible API
 
@@ -171,9 +180,9 @@ Backend API: FastAPI
 
 Validation: Pydantic
 
-Database: SQLite → PostgreSQL
+Database: SQLite (`sqlite3` raw SQL)
 
-Deployment: Docker + Railway
+Deployment: Docker + Render
 
 Language: Python 3.11
 ```

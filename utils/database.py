@@ -1,14 +1,13 @@
 import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+import sqlite3
+from pathlib import Path
 
-# Fallback to SQLite if DATABASE_URL is not set
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./clinical_risk.db")
+DEFAULT_DB_PATH = Path("db/clinical_risk.db")
+DB_PATH = Path(os.getenv("SQLITE_DB_PATH", str(DEFAULT_DB_PATH)))
 
-engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
-)
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+def get_connection():
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    return connection
